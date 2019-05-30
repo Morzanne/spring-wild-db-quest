@@ -22,6 +22,7 @@ public class Wizard {
         this.isMuggle = isMuggle;
     }
 
+
     public int getId() {
         return id;
     }
@@ -49,4 +50,6 @@ public class Wizard {
     public boolean isMuggle() {
         return isMuggle;
     }
+
+
 }
