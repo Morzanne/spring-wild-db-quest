@@ -97,6 +97,24 @@ public class SchoolRepository {
         }
     }
 
+    public static int update(int id, String name, int capacity, String country){
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/wild_db_quest?serverTimezone=GMT", "root", "80ee480bd30");
+            PreparedStatement statement = connection.prepareStatement("UPDATE school set name=?, capacity=?, country=? WHERE id=?")
+        ){
+            statement.setString(1, name);
+            statement.setInt(2, capacity);
+            statement.setString(3, country);
+            statement.setInt(4, id);
+
+            return statement.executeUpdate();
+        }
+        catch (SQLException e) {
+            throw new ResponseStatusException(
+                    HttpStatus.INTERNAL_SERVER_ERROR, "", e
+            );
+        }
+    }
+
 
 
     }
