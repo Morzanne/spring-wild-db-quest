@@ -114,6 +114,25 @@ public class SchoolRepository {
             );
         }
     }
+    public static int delete(int id) {
+        try(
+                Connection connection = DriverManager.getConnection(
+                        "jdbc:mysql://localhost:3306/wild_db_quest?serverTimezone=GMT", "root", "80ee480bd30"
+                );
+                PreparedStatement statement = connection.prepareStatement(
+                        "DELETE FROM school WHERE id=?"
+                );
+        ) {
+            statement.setInt(1, id);
+
+            return statement.executeUpdate();
+        }
+        catch (SQLException e) {
+            throw new ResponseStatusException(
+                    HttpStatus.INTERNAL_SERVER_ERROR, "", e
+            );
+        }
+    }
 
 
 
